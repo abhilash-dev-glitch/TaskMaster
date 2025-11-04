@@ -19,18 +19,20 @@ console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET);
 console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
 
 // Middleware
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174'];
+// Allow requests from your frontend URL and localhost for development
+const allowedOrigins = [
+  'https://your-frontend-url.onrender.com', // Replace with your actual frontend URL
+  'http://localhost:3000'
+];
 
-// CORS configuration
 app.use(cors({
-  origin: function (origin, callback) {
+  origin: function(origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
     }
-    const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-    return callback(new Error(msg), false);
     return callback(null, true);
   },
   credentials: true,
