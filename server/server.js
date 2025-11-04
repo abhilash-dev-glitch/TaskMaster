@@ -20,11 +20,13 @@ console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
 
 // Middleware
 // Allow requests from your frontend URL and localhost for development
+// Update the allowedOrigins array to include your frontend URL
 const allowedOrigins = [
-  'https://your-frontend-url.onrender.com', // Replace with your actual frontend URL
-  'http://localhost:3000'
+  'https://taskmasterapp-2gq4.onrender.com', // Your frontend URL
+  'http://localhost:3000'                    // For local development
 ];
 
+// Update CORS middleware
 app.use(cors({
   origin: function(origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
