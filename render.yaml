@@ -3,8 +3,7 @@ services:
     name: task-manager-api
     env: node
     build:
-      npm: install
-      command: npm start
+      command: chmod +x render-build.sh && ./render-build.sh
     envVars:
       - key: NODE_ENV
         value: production
@@ -16,4 +15,3 @@ services:
         generateValue: true
       - key: PORT
         value: 10000
-    plan: free

@@ -2,8 +2,11 @@
 # exit on error
 set -o errexit
 
+# Install server dependencies
+cd server
 npm install
-cd client
+
+# Install client dependencies and build
+cd ../client
 npm install
 npm run build
-cd ..
