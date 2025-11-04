@@ -11,7 +11,8 @@ import {
 const router = express.Router();
 
 // Public routes
-router.route('/').post(registerUser);
+router.route('/register').post(registerUser);  // New dedicated register route
+router.route('/').post(registerUser);          // Keep existing route for backward compatibility
 router.post('/login', authUser);
 
 // Protected routes
