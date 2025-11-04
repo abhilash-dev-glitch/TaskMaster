@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: task-manager-api
+    env: node
+    build:
+      npm: install
+      command: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: mongodb
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 10000
+    plan: free
